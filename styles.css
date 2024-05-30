@@ -94,13 +94,13 @@ section {
     padding: 40px 0;
 }
 
-.Projects-grid, .skills-grid {
+.portfolio-grid, .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
 }
 
-.Projects-item, .skills-grid div, .education-item {
+.portfolio-item, .skills-grid div, .education-item {
     background: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -108,16 +108,16 @@ section {
     transition: transform 0.3s;
 }
 
-.Projects-item:hover, .skills-grid div:hover, .education-item:hover {
+.portfolio-item:hover, .skills-grid div:hover, .education-item:hover {
     transform: translateY(-5px);
 }
 
-.Projects-item h3, .skills-grid h3, .education-item h3 {
+.portfolio-item h3, .skills-grid h3, .education-item h3 {
     margin: 0 0 10px;
     color: #ff7e5f;
 }
 
-.Projects-item p, .skills-grid p, .education-item p {
+.portfolio-item p, .skills-grid p, .education-item p {
     margin: 0;
 }
 
