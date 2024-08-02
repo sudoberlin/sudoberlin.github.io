@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
 </head>
 <body>
     <header>
@@ -34,6 +35,32 @@
             </div>
         </div>
     </header>
+
+
+    <div id="leetcode-dashboard">
+        <h2>My LeetCode Stats</h2>
+        <div id="leetcode-stats"></div>
+    </div>
+
+    
+    <a href="#" class="notes-link">Quick Notes</a>
+
+    <section id="notes-section" class="notes-container" style="display: none;">
+      <h2>My Notes</h2>
+      <div class="notes-controls">
+        <button id="view-notes" class="btn" style="background-color: rgb(221, 174, 86);">View Notes</button>
+        <button id="add-note" class="btn" style="background-color: rgb(74, 155, 74);">Add Note</button>
+
+      </div>
+      <div id="notes-list" style="display: none;"></div>
+      <div id="note-input-area" style="display: none;">
+        <textarea id="note-input" placeholder="Write your note here..."></textarea>
+        <button id="save-note" class="btn btn-primary">Save Note</button>
+      </div>
+    </section>
+
+
+
 
     <main>
         <section id="about" class="container">
@@ -200,6 +227,8 @@
             </div>
         </section>
 
+        
+
         <section id="contact" class="container">
           <div class="section-header">
               <h2>Contact</h2>
@@ -216,6 +245,7 @@
           <div id="form-status"></div>
       </section>
       <script src="script.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     </main>
 
     <footer>
