@@ -141,58 +141,87 @@ document.addEventListener('DOMContentLoaded', () => {
   // leetcode --- 
 
 
+  // document.addEventListener('DOMContentLoaded', () => {
+  //   const leetcodeStats = document.getElementById('leetcode-stats');
+  //   const username = 'l_user'; // Replace with your actual LeetCode username
+  
+  //   async function fetchLeetCodeStats() {
+  //     try {
+  //       const response = await fetch(`https://leetcode-stats-api.herokuapp.com/${username}`);
+  //       const data = await response.json();
+  
+  //       if (data.status === 'success') {
+  //         const statsHTML = `
+  //           <div class="stat-card total-solved">
+  //             <h3>Total Solved</h3>
+  //             <p>${data.totalSolved}</p>
+  //           </div>
+  //           <div class="stat-card easy-solved">
+  //             <h3>Easy</h3>
+  //             <p>${data.easySolved}</p>
+  //           </div>
+  //           <div class="stat-card medium-solved">
+  //             <h3>Medium</h3>
+  //             <p>${data.mediumSolved}</p>
+  //           </div>
+  //           <div class="stat-card hard-solved">
+  //             <h3>Hard</h3>
+  //             <p>${data.hardSolved}</p>
+  //           </div>
+  //           <div class="stat-card acceptance-rate">
+  //             <h3>Acceptance Rate</h3>
+  //             <p>${data.acceptanceRate}%</p>
+  //           </div>
+  //           <div class="stat-card ranking">
+  //             <h3>Ranking</h3>
+  //             <p>${data.ranking}</p>
+  //           </div>
+  //         `;
+  //         leetcodeStats.innerHTML = statsHTML;
+          
+  //         // Trigger animation after content is loaded
+  //         setTimeout(() => {
+  //           document.querySelectorAll('.stat-card').forEach(card => {
+  //             card.classList.add('animate');
+  //           });
+  //         }, 100);
+  //       } else {
+  //         leetcodeStats.innerHTML = '<p>Failed to load LeetCode stats.</p>';
+  //       }
+  //     } catch (error) {
+  //       console.error('Error fetching LeetCode stats:', error);
+  //       leetcodeStats.innerHTML = '<p>Error loading LeetCode stats.</p>';
+  //     }
+  //   }
+  
+  //   fetchLeetCodeStats();
+  // });
   document.addEventListener('DOMContentLoaded', () => {
-    const leetcodeStats = document.getElementById('leetcode-stats');
+    const leetcodeCard = document.getElementById('leetcode-card');
     const username = 'l_user'; // Replace with your actual LeetCode username
   
-    async function fetchLeetCodeStats() {
-      try {
-        const response = await fetch(`https://leetcode-stats-api.herokuapp.com/${username}`);
-        const data = await response.json();
+    // Set the source of the image with more detailed stats and heatmap
+    leetcodeCard.src = `https://leetcard.jacoblin.cool/${username}?theme=nord&font=Outfit&ext=heatmap&border=0&radius=20&hide_title=true&width=480`;
   
-        if (data.status === 'success') {
-          const statsHTML = `
-            <div class="stat-card total-solved">
-              <h3>Total Solved</h3>
-              <p>${data.totalSolved}</p>
-            </div>
-            <div class="stat-card easy-solved">
-              <h3>Easy</h3>
-              <p>${data.easySolved}</p>
-            </div>
-            <div class="stat-card medium-solved">
-              <h3>Medium</h3>
-              <p>${data.mediumSolved}</p>
-            </div>
-            <div class="stat-card hard-solved">
-              <h3>Hard</h3>
-              <p>${data.hardSolved}</p>
-            </div>
-            <div class="stat-card acceptance-rate">
-              <h3>Acceptance Rate</h3>
-              <p>${data.acceptanceRate}%</p>
-            </div>
-            <div class="stat-card ranking">
-              <h3>Ranking</h3>
-              <p>${data.ranking}</p>
-            </div>
-          `;
-          leetcodeStats.innerHTML = statsHTML;
-          
-          // Trigger animation after content is loaded
-          setTimeout(() => {
-            document.querySelectorAll('.stat-card').forEach(card => {
-              card.classList.add('animate');
-            });
-          }, 100);
-        } else {
-          leetcodeStats.innerHTML = '<p>Failed to load LeetCode stats.</p>';
-        }
-      } catch (error) {
-        console.error('Error fetching LeetCode stats:', error);
-        leetcodeStats.innerHTML = '<p>Error loading LeetCode stats.</p>';
-      }
-    }
+    // Add loading animation
+    leetcodeCard.style.opacity = '0';
+    leetcodeCard.style.transition = 'opacity 0.5s ease';
   
-    fetchLeetCodeStats();
+    leetcodeCard.onload = function() {
+      this.style.opacity = '1';
+    };
+  
+    // Error handling
+    leetcodeCard.onerror = function() {
+      this.style.display = 'none';
+      const errorMessage = document.createElement('p');
+      errorMessage.textContent = 'Unable to load LeetCode stats. Please try again later.';
+      errorMessage.style.color = '#ffffff';
+      errorMessage.style.textAlign = 'center';
+      errorMessage.style.padding = '20px';
+      this.parentNode.appendChild(errorMessage);
+    };
   });
+
+
+  

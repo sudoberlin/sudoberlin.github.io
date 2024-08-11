@@ -436,8 +436,8 @@ footer {
 
 
 
-  
-
+  /* prev leet stats code */
+/* 
   @keyframes fadeInUp {
     from {
       opacity: 0;
@@ -511,7 +511,6 @@ footer {
     font-weight: bold;
     margin: 0;
     
-    
   }
   
   .total-solved { color: #4CAF50; }
@@ -522,7 +521,132 @@ footer {
   .ranking { color: #9C27B0; }
   
   .stat-card:hover {
-    
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  } */
+
+
+  /* addidtional random medoum problem picker */
+  #random-leetcode-problem {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f0f8ff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
   }
+  
+  #random-leetcode-problem h3 {
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  #get-random-problem {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  #get-random-problem:hover {
+    background-color: #45a049;
+  }
+  
+  #problem-display {
+    margin-top: 20px;
+  }
+  
+  #problem-display p {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  #problem-display a {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  #problem-display a:hover {
+    background-color: #0056b3;
+  }
+
+
+
+  /* Leet stats */
+
+  
+  .leetcode-stats-container {
+    max-width: 680px;
+    max-height: fit-content;
+    margin: 30px auto;
+    background: linear-gradient(145deg, #2c3e50, #3498db);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .leetcode-stats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .leetcode-stats-header h3 {
+    color: #ffffff;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .leetcode-logo {
+    width: 40px;
+    height: 40px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(239, 58, 58, 0.1);
+  }
+  
+
+.leetcode-card-wrapper {
+  padding: 40px;
+}
+
+#leetcode-card {
+  width: 100%;
+  height: 200%;
+  max-width: 680px;
+  max-height: fit-content; /* Increased max-width to accommodate the larger card */
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+  
+  #leetcode-card:hover {
+    transform: scale(1.02);
+  }
+  
+  @media (max-width: 1000px) {
+    .leetcode-stats-container {
+      max-width: 95%;
+    }
+  }
+
+  
