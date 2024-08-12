@@ -31,7 +31,7 @@ a:hover {
     font-size: 2.5em;
     margin: 0;
     color: #5c1200;
-    position: relative;
+    position:relative;
 }
 
 .section-header h2::after {
@@ -74,7 +74,7 @@ nav ul {
 }
 
 nav li {
-    margin: 0 15px;
+    margin: 0 10px;
 }
 
 .social-icons {
