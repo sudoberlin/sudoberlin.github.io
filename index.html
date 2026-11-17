@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shubham Singh</title>
+  <meta name="description" content="Shubham Singh. Robot learning, manipulation and human-robot interaction. Independent research on how vision-language-action policies respond to reworded instructions.">
+  <meta name="author" content="Shubham Singh">
+  <meta property="og:title" content="Shubham Singh">
+  <meta property="og:description" content="Robot learning, manipulation and human-robot interaction.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://sudoberlin.github.io/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+
+    <header class="intro">
+      <img class="portrait" src="https://github.com/sudoberlin.png?size=320" alt="Shubham Singh" width="160" height="160">
+      <div>
+        <h1>Shubham Singh</h1>
+        <p class="tagline">Robot learning &middot; Manipulation &middot; Human-robot interaction</p>
+        <nav class="links" aria-label="Contact and profiles">
+          <a href="mailto:imshubh.dev@gmail.com">Email</a>
+          <a href="https://github.com/sudoberlin">GitHub</a>
+          <a href="https://www.linkedin.com/in/shubham-singh01">LinkedIn</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="about">
+      <p>I'm interested in how robots learn to act in the physical world and how they work alongside the people who instruct them. Most of what I've built comes back to one question: does a learned system keep behaving sensibly when its inputs drift away from what it was trained on? In robotics that question matters most, because a failure is physical.</p>
+      <p>My current work is an independent study of vision-language-action models, asking whether a robot policy does the same thing when the same request is worded differently. Over the longer run I want to be able to build a robot system end to end, from perception and learning through to control and kinematics.</p>
+      <p>Before this I spent several years as an engineer on machine learning systems and computer vision software. I hold an M.S. in Computer Science from the University of Texas at Dallas and a B.Tech in Electronics and Communication Engineering from NIT Nagaland, and I live in Dallas.</p>
+    </section>
+
+    <section>
+      <h2>Interests</h2>
+      <ul class="interests">
+        <li><span>Robot learning</span> vision-language-action models, imitation and reinforcement learning, sample-efficient exploration</li>
+        <li><span>Manipulation</span> policies that hold up under shifts in scene, wording and embodiment</li>
+        <li><span>Human-robot interaction</span> how people instruct robots, and robots that notice when an instruction is unclear</li>
+        <li><span>Evaluation</span> controlled, simulation-based tests that trace a failure to its cause</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Research</h2>
+
+      <article class="item">
+        <h3><a href="https://github.com/sudoberlin/vla-phrasing-brittleness">Instruction-phrasing brittleness in vision-language-action models</a></h3>
+        <p class="meta">Independent study &middot; ongoing</p>
+        <p>Vision-language-action policies such as OpenVLA are built on pretrained vision-language models that handle paraphrase well. "Put the spoon on the towel" and "place the spoon on the towel" name the same task, so a policy that kept its backbone's language ability should act the same way for both. I test whether it does. The scene, camera and robot state are held fixed in SimplerEnv and only the instruction text changes, so any difference in behaviour can be traced to wording and not to perception or control.</p>
+        <figure>
+          <img src="vla-method.svg" alt="The scene is held fixed and only the instruction changes. The policy is measured per frame and over full episodes." loading="lazy">
+          <figcaption>Each task has a canonical instruction and twelve paraphrases in six categories. A same-frame probe measures how much single actions change, and full rollouts measure success and trajectory divergence against a control run.</figcaption>
+        </figure>
+        <p class="item-links"><a href="https://github.com/sudoberlin/vla-phrasing-brittleness">Code</a></p>
+      </article>
+
+      <article class="item">
+        <h3>Sensor synchronization for virtual-human interaction studies</h3>
+        <p class="meta">Research Assistant, University of Texas at Dallas &middot; 2023</p>
+        <p>Built a Python service that synchronized and aligned live physiological sensor streams for experiments on how people interact with virtual humans, so researchers could pull every processed signal from one endpoint. Also fine-tuned DistilBERT for multi-label classification and extractive question answering.</p>
+      </article>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+
+      <article class="item">
+        <h3><a href="https://github.com/sudoberlin/BetaOthello">BetaOthello</a></h3>
+        <p class="meta">With Narendra Gangwani &middot; UT Dallas, 2023</p>
+        <p>An Othello agent whose value function is a Bayesian neural network, trained from self-play with variational inference. Every value the agent computes is a sample from a posterior over value functions, which opens the door to exploring where the agent is least certain.</p>
+        <p class="item-links"><a href="https://github.com/sudoberlin/BetaOthello">Code</a></p>
+      </article>
+
+      <article class="item">
+        <h3>Image inpainting for occluded scenes</h3>
+        <p class="meta">UT Dallas</p>
+        <p>A convolutional encoder-decoder in PyTorch that fills in masked image regions from the surrounding context. Partial occlusion of this kind is routine in cluttered manipulation scenes.</p>
+      </article>
+    </section>
+
+    <section>
+      <h2>Experience</h2>
+      <ul class="timeline">
+        <li>
+          <div class="when">2025 &ndash; now</div>
+          <div><strong>Software Engineer, Machine Learning</strong> &middot; Singular Analysts, Dallas<br>
+          Multi-agent LLM workflows, with an orchestrator that routes document parsing, retrieval and summarization to worker agents.</div>
+        </li>
+        <li>
+          <div class="when">2025</div>
+          <div><strong>Software Engineer</strong> &middot; KLA, San Francisco Bay Area<br>
+          Ported a production computer vision library for semiconductor wafer inspection from Java to C++17/20, and profiled multithreaded code that talks to hardware device drivers.</div>
+        </li>
+        <li>
+          <div class="when">2024 &ndash; 2025</div>
+          <div><strong>Machine Learning Engineer</strong> &middot; PNC, Dallas<br>
+          Fraud-detection and transaction models, an internal retrieval-augmented assistant, and the pipelines that retrain and monitor them.</div>
+        </li>
+        <li>
+          <div class="when">2023</div>
+          <div><strong>Teaching Assistant</strong> &middot; University of Texas at Dallas<br>
+          Weekly labs in C++, object-oriented programming, and data structures and algorithms.</div>
+        </li>
+        <li>
+          <div class="when">2023</div>
+          <div><strong>Research Assistant</strong> &middot; University of Texas at Dallas</div>
+        </li>
+        <li>
+          <div class="when">2020 &ndash; 2021</div>
+          <div><strong>Software Engineer</strong> &middot; Ourodemi, Delhi</div>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <ul class="timeline">
+        <li>
+          <div class="when">2021 &ndash; 2023</div>
+          <div><strong>M.S. in Computer Science</strong> &middot; University of Texas at Dallas</div>
+        </li>
+        <li>
+          <div class="when">2017 &ndash; 2021</div>
+          <div><strong>B.Tech in Electronics and Communication Engineering</strong> &middot; National Institute of Technology Nagaland<br>
+          Founding member of the Robotics Club, and worked with the robotics team on a self-driving car project in simulation.</div>
+        </li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>Python &middot; C++ &middot; PyTorch</p>
+      <p>&copy; 2026 Shubham Singh</p>
+    </footer>
+
+  </main>
+</body>
+</html>

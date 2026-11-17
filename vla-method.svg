@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 360" width="920" height="360" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57606a"/>
+    </marker>
+  </defs>
+  <rect width="920" height="360" rx="10" fill="#ffffff"/>
+
+  <!-- inputs -->
+  <rect x="24" y="40" width="250" height="118" rx="8" fill="#f6f8fa" stroke="#d0d7de"/>
+  <text x="44" y="68" font-size="15" font-weight="600" fill="#1f2328">Scene, held fixed</text>
+  <text x="44" y="94" font-size="13" fill="#57606a">Same episode id on every reset</text>
+  <text x="44" y="116" font-size="13" fill="#57606a">Robot start pose, camera view</text>
+  <text x="44" y="138" font-size="13" fill="#57606a">and object layout never change</text>
+
+  <rect x="24" y="202" width="250" height="118" rx="8" fill="#ddf4ff" stroke="#54aeff"/>
+  <text x="44" y="230" font-size="15" font-weight="600" fill="#1f2328">Instruction, the one variable</text>
+  <text x="44" y="256" font-size="13" fill="#57606a">1 canonical instruction</text>
+  <text x="44" y="278" font-size="13" fill="#57606a">12 paraphrases in 6 categories</text>
+  <text x="44" y="300" font-size="13" fill="#57606a">1 control, a canonical rerun</text>
+
+  <!-- policy -->
+  <rect x="352" y="130" width="160" height="100" rx="8" fill="#1f2328"/>
+  <text x="432" y="174" font-size="16" font-weight="600" fill="#ffffff" text-anchor="middle">VLA policy</text>
+  <text x="432" y="198" font-size="13" fill="#d0d7de" text-anchor="middle">OpenVLA, greedy</text>
+
+  <path d="M274 99 C 316 99, 312 160, 350 160" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M274 261 C 316 261, 312 200, 350 200" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- outputs -->
+  <rect x="590" y="40" width="306" height="118" rx="8" fill="#f6f8fa" stroke="#d0d7de"/>
+  <text x="610" y="68" font-size="15" font-weight="600" fill="#1f2328">Probe: one action per frame</text>
+  <text x="610" y="94" font-size="13" fill="#57606a">Identical image, different text</text>
+  <text x="610" y="116" font-size="13" fill="#57606a">Token disagreement, bin distance</text>
+  <text x="610" y="138" font-size="13" fill="#57606a">Action-token variance across the set</text>
+
+  <rect x="590" y="202" width="306" height="118" rx="8" fill="#f6f8fa" stroke="#d0d7de"/>
+  <text x="610" y="230" font-size="15" font-weight="600" fill="#1f2328">Rollout: one full episode each</text>
+  <text x="610" y="256" font-size="13" fill="#57606a">Success rate with 95% interval</text>
+  <text x="610" y="278" font-size="13" fill="#57606a">Trajectory divergence from canonical</text>
+  <text x="610" y="300" font-size="13" fill="#57606a">First step where the action differs</text>
+
+  <path d="M512 160 C 552 160, 550 99, 588 99" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M512 200 C 552 200, 550 261, 588 261" fill="none" stroke="#57606a" stroke-width="1.5" marker-end="url(#arrow)"/>
+</svg>
