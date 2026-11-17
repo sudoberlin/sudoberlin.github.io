@@ -153,6 +153,17 @@ figcaption { color: var(--muted); font-size: 0.88rem; margin-top: 10px; line-hei
 .when { color: var(--muted); font-size: 0.92rem; padding-top: 1px; font-variant-numeric: tabular-nums; }
 .timeline strong { font-weight: 600; }
 
+/* Contact */
+.contact { list-style: none; padding: 0; margin: 18px 0 0; }
+.contact li {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: 16px;
+  margin-bottom: 8px;
+  overflow-wrap: anywhere;
+}
+.contact span { color: var(--muted); font-size: 0.92rem; padding-top: 1px; }
+
 footer {
   margin-top: 64px;
   padding-top: 20px;
@@ -171,10 +182,10 @@ footer p { margin: 0; }
   main { padding-top: 36px; }
   html { scroll-padding-top: 96px; }
   .topbar-inner { padding: 10px 20px; }
-  .sections { gap: 2px 14px; font-size: 0.86rem; }
-  .wide-only { display: none; }
+  .sections { gap: 2px 12px; font-size: 0.82rem; }
   .intro { flex-direction: column; align-items: flex-start; gap: 20px; }
   .portrait { width: 112px; height: 112px; }
   h1 { font-size: 2rem; }
-  .timeline li { grid-template-columns: 1fr; gap: 2px; }
+  .timeline li, .contact li { grid-template-columns: 1fr; gap: 2px; }
+  .contact li { margin-bottom: 12px; }
 }
