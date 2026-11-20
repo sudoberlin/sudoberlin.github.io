@@ -7,7 +7,7 @@
   <meta name="robots" content="noindex, nofollow">
   <meta name="author" content="Shubham Singh">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../style.css?v=6">
+  <link rel="stylesheet" href="../style.css?v=7">
 </head>
 <body>
   <nav class="topbar" aria-label="Sections">
@@ -17,6 +17,7 @@
         <a href="#plan">Plan</a>
         <a href="#weeks">Weeks</a>
         <a href="#checkpoints">Checkpoints</a>
+        <a href="#resources">Resources</a>
         <a href="../tools/">Tools</a>
       </div>
     </div>
@@ -67,6 +68,18 @@
       <div id="checkpoint-list"></div>
     </section>
 
+    <section id="resources">
+      <h2>Core resources</h2>
+      <ul class="timeline">
+        <li><span class="when">Book</span><div><a href="https://hades.mech.northwestern.edu/index.php/Modern_Robotics">Modern Robotics</a>, Lynch and Park. Free PDF, the math thread for weeks 1 to 8.</div></li>
+        <li><span class="when">Docs</span><div><a href="https://docs.ros.org/en/jazzy/">ROS 2 Jazzy</a>, <a href="https://control.ros.org/jazzy/index.html">ros2_control</a>, <a href="https://moveit.picknik.ai/main/index.html">MoveIt 2</a>, <a href="https://docs.nav2.org/jazzy/">Nav2</a>, <a href="https://gazebosim.org/docs/harmonic/getstarted/">Gazebo Harmonic</a>.</div></li>
+        <li><span class="when">Video</span><div><a href="https://www.youtube.com/@ArticulatedRobotics">Articulated Robotics</a> for ROS 2, <a href="https://www.youtube.com/@BrianDouglas">Brian Douglas</a> and <a href="https://www.youtube.com/@Eigensteve">Steve Brunton</a> for control, <a href="https://www.youtube.com/@CyrillStachniss">Cyrill Stachniss</a> for SLAM.</div></li>
+        <li><span class="when">Course</span><div><a href="https://rail.eecs.berkeley.edu/deeprlcourse/">Berkeley CS 285</a> for deep RL, <a href="https://spinningup.openai.com/">Spinning Up</a> as the short version.</div></li>
+        <li><span class="when">Learning</span><div><a href="https://huggingface.co/docs/lerobot">LeRobot</a>, <a href="https://mujoco.readthedocs.io/">MuJoCo</a>, <a href="https://isaac-sim.github.io/IsaacLab/">Isaac Lab</a>, <a href="https://stable-baselines3.readthedocs.io/">Stable-Baselines3</a>.</div></li>
+      </ul>
+      <p class="muted small">Each week also lists its own docs, videos, repos and papers. Video entries without a channel open a YouTube search, since specific videos move around.</p>
+    </section>
+
     <footer>
       <p><a href="../">Back to home</a></p>
       <p>&copy; 2026 Shubham Singh</p>
@@ -88,110 +101,110 @@
     ];
 
     var WEEKS = [
-      { n: 1, title: "Modern C++ for robotics", math: "MR ch 3, rigid-body motion",
+      { n: 1, res: [{"t": "Docs", "l": "learncpp.com (modern C++ refresher)", "u": "https://www.learncpp.com/"}, {"t": "Docs", "l": "CMake official tutorial", "u": "https://cmake.org/cmake/help/latest/guide/tutorial/index.html"}, {"t": "Docs", "l": "Eigen geometry module", "u": "https://eigen.tuxfamily.org/dox/group__TutorialGeometry.html"}, {"t": "Docs", "l": "GoogleTest primer", "u": "https://google.github.io/googletest/primer.html"}, {"t": "Video", "l": "CppCon Back to Basics talks", "u": "https://www.youtube.com/results?search_query=CppCon+Back+to+Basics"}, {"t": "Book", "l": "Modern Robotics ch 3 (free PDF)", "u": "https://hades.mech.northwestern.edu/index.php/Modern_Robotics"}, {"t": "Video", "l": "Modern Robotics lectures, Kevin Lynch", "u": "https://www.youtube.com/results?search_query=Modern+Robotics+Kevin+Lynch+chapter+3"}], title: "Modern C++ for robotics", math: "MR ch 3, rigid-body motion",
         items: ["C++17 refresh: RAII, smart pointers, move semantics, optional and variant",
                 "Templates and lambdas, the parts ROS 2 code uses",
                 "CMake targets, find_package, install rules, gtest",
                 "Eigen: Isometry3d, Quaterniond, aliasing and alignment pitfalls",
                 "Threads, mutexes, atomics, no allocation in real-time loops"],
         deliverable: "SE(3) library in C++ (compose, invert, exp/log, interpolation), tested against Python modern_robotics" },
-      { n: 2, title: "ROS 2 core", math: "MR ch 4, forward kinematics",
+      { n: 2, res: [{"t": "Docs", "l": "ROS 2 Jazzy tutorials", "u": "https://docs.ros.org/en/jazzy/Tutorials.html"}, {"t": "Docs", "l": "Executors and callback groups", "u": "https://docs.ros.org/en/jazzy/Concepts/Intermediate/About-Executors.html"}, {"t": "Docs", "l": "QoS settings", "u": "https://docs.ros.org/en/jazzy/Concepts/Intermediate/About-Quality-of-Service-Settings.html"}, {"t": "Video", "l": "Articulated Robotics (ROS 2 from scratch)", "u": "https://www.youtube.com/@ArticulatedRobotics"}, {"t": "Repo", "l": "industrial_ci (CI for ROS packages)", "u": "https://github.com/ros-industrial/industrial_ci"}, {"t": "Video", "l": "Modern Robotics lectures, ch 4", "u": "https://www.youtube.com/results?search_query=Modern+Robotics+Kevin+Lynch+forward+kinematics"}], title: "ROS 2 core", math: "MR ch 4, forward kinematics",
         items: ["Nodes, topics, executors, callback groups (rclcpp and rclpy)",
                 "Services and actions, an action server in C++",
                 "Parameters, Python launch files, namespaces, remapping",
                 "QoS profiles, best-effort for sensor data",
                 "colcon, package layout, custom interfaces"],
         deliverable: "3-node package (sensor sim, filter, monitor with an action) with GitHub Actions CI" },
-      { n: 3, title: "Robot description and kinematics in code", math: "MR ch 5-6, Jacobians and IK",
+      { n: 3, res: [{"t": "Docs", "l": "URDF tutorials", "u": "https://docs.ros.org/en/jazzy/Tutorials/Intermediate/URDF/URDF-Main.html"}, {"t": "Docs", "l": "tf2 tutorials", "u": "https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Tf2/Tf2-Main.html"}, {"t": "Docs", "l": "Pinocchio docs", "u": "https://stack-of-tasks.github.io/pinocchio/"}, {"t": "Video", "l": "Articulated Robotics on URDF", "u": "https://www.youtube.com/results?search_query=Articulated+Robotics+URDF"}, {"t": "Video", "l": "Modern Robotics lectures, Jacobians and IK", "u": "https://www.youtube.com/results?search_query=Modern+Robotics+Kevin+Lynch+inverse+kinematics"}], title: "Robot description and kinematics in code", math: "MR ch 5-6, Jacobians and IK",
         items: ["URDF and xacro: links, joints, inertia, collision vs visual",
                 "robot_state_publisher, tf2 listeners and broadcasters in C++",
                 "KDL and Pinocchio: FK and Jacobians from a URDF",
                 "Numerical IK, damped least squares, KDL vs TRAC-IK",
                 "Read robot_state_publisher source"],
         deliverable: "6-DOF arm URDF and my own IK node, checked against Pinocchio" },
-      { n: 4, title: "ros2_control and Gazebo", math: "MR ch 11.1-11.4, joint control",
+      { n: 4, res: [{"t": "Docs", "l": "ros2_control docs", "u": "https://control.ros.org/jazzy/index.html"}, {"t": "Repo", "l": "ros2_control_demos", "u": "https://github.com/ros-controls/ros2_control_demos"}, {"t": "Docs", "l": "Gazebo Harmonic getting started", "u": "https://gazebosim.org/docs/harmonic/getstarted/"}, {"t": "Video", "l": "Brian Douglas on PID and control", "u": "https://www.youtube.com/@BrianDouglas"}, {"t": "Video", "l": "Articulated Robotics on ros2_control", "u": "https://www.youtube.com/results?search_query=Articulated+Robotics+ros2_control"}], title: "ros2_control and Gazebo", math: "MR ch 11.1-11.4, joint control",
         items: ["ros2_control architecture, hardware interfaces, controller manager",
                 "Gazebo Harmonic + gz_ros2_control, spawn the arm",
                 "joint_trajectory_controller, sending trajectories from code",
                 "PID in a control loop: gains, rates, jitter",
                 "Controller plugin in C++ with pluginlib"],
         deliverable: "Custom PD + gravity compensation controller plugin in Gazebo, with step-response plots" },
-      { n: 5, title: "MoveIt 2", math: "MR ch 9-10 skim, trajectories and planning",
+      { n: 5, res: [{"t": "Docs", "l": "MoveIt 2 tutorials", "u": "https://moveit.picknik.ai/main/index.html"}, {"t": "Docs", "l": "Pick and place with MoveIt Task Constructor", "u": "https://moveit.picknik.ai/main/doc/tutorials/pick_and_place_with_moveit_task_constructor/pick_and_place_with_moveit_task_constructor.html"}, {"t": "Docs", "l": "OMPL planners", "u": "https://ompl.kavrakilab.org/"}, {"t": "Video", "l": "MoveIt 2 tutorials and ROSCon talks", "u": "https://www.youtube.com/results?search_query=MoveIt+2+tutorial"}], title: "MoveIt 2", math: "MR ch 9-10 skim, trajectories and planning",
         items: ["MoveIt architecture, SRDF, Setup Assistant",
                 "Planning scene, collision objects, MoveGroupInterface in C++",
                 "OMPL planners (RRT-Connect, PRM) and their settings",
                 "Cartesian paths, time parameterization, MoveIt Servo",
                 "MoveIt Task Constructor"],
         deliverable: "Pick-and-place of 3 blocks in Gazebo with MTC, robust to block positions" },
-      { n: 6, title: "Perception pipelines", math: "Camera model and projection",
+      { n: 6, res: [{"t": "Docs", "l": "OpenCV camera calibration", "u": "https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html"}, {"t": "Docs", "l": "Open3D docs", "u": "https://www.open3d.org/docs/release/"}, {"t": "Docs", "l": "ONNX Runtime C++ API", "u": "https://onnxruntime.ai/docs/get-started/with-cpp.html"}, {"t": "Repo", "l": "apriltag_ros", "u": "https://github.com/christianrauch/apriltag_ros"}, {"t": "Video", "l": "First Principles of Computer Vision (Shree Nayar)", "u": "https://www.youtube.com/@firstprinciplesofcomputerv3258"}], title: "Perception pipelines", math: "Camera model and projection",
         items: ["image_transport, cv_bridge, camera_info, calibration",
                 "Depth to point cloud, PCL/Open3D filtering, plane segmentation",
                 "AprilTag detection, hand-eye calibration",
                 "YOLO or segmentation in a C++ node with ONNX Runtime",
                 "message_filters sync, latency measurement"],
         deliverable: "Node that detects objects, publishes 3D poses on tf and feeds the week-5 pick-and-place" },
-      { n: 7, title: "Localization and SLAM", math: "Bayes filter and EKF equations",
+      { n: 7, res: [{"t": "Repo", "l": "robot_localization", "u": "https://github.com/cra-ros-pkg/robot_localization"}, {"t": "Repo", "l": "slam_toolbox", "u": "https://github.com/SteveMacenski/slam_toolbox"}, {"t": "Docs", "l": "Nav2 with SLAM tutorial", "u": "https://docs.nav2.org/jazzy/tutorials/general_tutorials/navigation2_with_slam/navigation2_with_slam/"}, {"t": "Book", "l": "Kalman and Bayesian Filters in Python (free notebooks)", "u": "https://github.com/rlabbe/Kalman-and-Bayesian-Filters-in-Python"}, {"t": "Video", "l": "Cyrill Stachniss: SLAM and state estimation", "u": "https://www.youtube.com/@CyrillStachniss"}], title: "Localization and SLAM", math: "Bayes filter and EKF equations",
         items: ["Odometry, IMU, drift",
                 "Kalman filter and EKF in code, then robot_localization",
                 "Particle filters and AMCL",
                 "slam_toolbox mapping, loop closure, saving maps",
                 "Read slam_toolbox or robot_localization source"],
         deliverable: "TurtleBot in Gazebo: fused odometry vs ground truth plot, plus a saved map" },
-      { n: 8, title: "Nav2", math: "MR ch 13 skim, wheeled robots",
+      { n: 8, res: [{"t": "Docs", "l": "Nav2 getting started", "u": "https://docs.nav2.org/jazzy/getting_started/index.html"}, {"t": "Docs", "l": "Writing a Nav2 controller plugin", "u": "https://docs.nav2.org/jazzy/tutorials/plugin_tutorials/writing_new_controller_plugin/writing_new_controller_plugin/"}, {"t": "Video", "l": "Nav2 walkthroughs", "u": "https://www.youtube.com/results?search_query=Nav2+ROS+2+tutorial"}], title: "Nav2", math: "MR ch 13 skim, wheeled robots",
         items: ["Nav2 architecture, lifecycle nodes, BT navigator",
                 "Costmaps and layers, inflation",
                 "Planners (NavFn, Smac) and controllers (DWB, RPP, MPPI)",
                 "Nav2 controller plugin in C++",
                 "Waypoint following, recovery behaviors"],
         deliverable: "My own pure-pursuit controller plugin, compared to RPP on the same course" },
-      { n: 9, title: "Architecture", math: "",
+      { n: 9, res: [{"t": "Docs", "l": "BehaviorTree.CPP", "u": "https://www.behaviortree.dev/"}, {"t": "Docs", "l": "Managed (lifecycle) nodes design", "u": "https://design.ros2.org/articles/node_lifecycle.html"}, {"t": "Docs", "l": "Node composition tutorial", "u": "https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Composition.html"}, {"t": "Video", "l": "ROSCon talks on behavior trees", "u": "https://www.youtube.com/results?search_query=ROSCon+behavior+trees"}], title: "Architecture", math: "",
         items: ["BehaviorTree.CPP and Groot",
                 "State machines vs behavior trees",
                 "Lifecycle nodes, startup and shutdown order",
                 "Composition, zero-copy, DDS choice and tuning",
                 "Error handling, timeouts, watchdogs"],
         deliverable: "Behavior tree that navigates to a table, detects an object and picks it" },
-      { n: 10, title: "Testing, tooling and performance", math: "",
+      { n: 10, res: [{"t": "Docs", "l": "Testing in ROS 2", "u": "https://docs.ros.org/en/jazzy/Tutorials/Intermediate/Testing/Testing-Main.html"}, {"t": "Repo", "l": "ros2_tracing", "u": "https://github.com/ros2/ros2_tracing"}, {"t": "Docs", "l": "Foxglove docs", "u": "https://docs.foxglove.dev/"}, {"t": "Video", "l": "ROSCon talks on ROS 2 performance", "u": "https://www.youtube.com/results?search_query=ROSCon+ROS+2+performance+latency"}], title: "Testing, tooling and performance", math: "",
         items: ["gtest, pytest, launch_testing",
                 "rosbag2 replay regression tests",
                 "Foxglove, RViz, structured logging",
                 "ros2_tracing, perf, callback latency, real-time Linux basics",
                 "Multi-stage Docker images, devcontainers"],
         deliverable: "Test suite + Docker image for the week-9 system, CI green, latency report" },
-      { n: 11, title: "Simulation for learning", math: "",
+      { n: 11, res: [{"t": "Docs", "l": "MuJoCo docs", "u": "https://mujoco.readthedocs.io/"}, {"t": "Repo", "l": "MuJoCo Menagerie (robot models)", "u": "https://github.com/google-deepmind/mujoco_menagerie"}, {"t": "Docs", "l": "Gymnasium: create a custom env", "u": "https://gymnasium.farama.org/introduction/create_custom_env/"}, {"t": "Docs", "l": "Isaac Lab docs", "u": "https://isaac-sim.github.io/IsaacLab/"}], title: "Simulation for learning", math: "",
         items: ["MuJoCo Python API, MJCF, Menagerie",
                 "Gymnasium env API, a custom env",
                 "Isaac Lab overview, GPU-parallel sim (cloud GPU)",
                 "Domain randomization, observation and action design",
                 "Vectorized envs, throughput benchmarks"],
         deliverable: "My own Gymnasium env for a Franka push or reach task, with tests" },
-      { n: 12, title: "RL from training to deployment", math: "",
+      { n: 12, res: [{"t": "Docs", "l": "Stable-Baselines3", "u": "https://stable-baselines3.readthedocs.io/"}, {"t": "Docs", "l": "OpenAI Spinning Up", "u": "https://spinningup.openai.com/"}, {"t": "Course", "l": "Berkeley CS 285 Deep RL", "u": "https://rail.eecs.berkeley.edu/deeprlcourse/"}, {"t": "Video", "l": "CS 285 lectures", "u": "https://www.youtube.com/results?search_query=CS+285+Sergey+Levine+lecture"}, {"t": "Docs", "l": "PyTorch ONNX export", "u": "https://docs.pytorch.org/docs/stable/onnx.html"}, {"t": "Video", "l": "Steve Brunton on control and RL", "u": "https://www.youtube.com/@Eigensteve"}], title: "RL from training to deployment", math: "",
         items: ["PPO and SAC in Stable-Baselines3",
                 "Reward design, W&B or TensorBoard logging",
                 "Training runs and sweeps on the week-11 env",
                 "Export to ONNX or TorchScript",
                 "ROS 2 node running the policy at a fixed rate"],
         deliverable: "Trained policy driving the arm in Gazebo through ros2_control" },
-      { n: 13, title: "Imitation learning with LeRobot", math: "",
+      { n: 13, res: [{"t": "Docs", "l": "LeRobot docs", "u": "https://huggingface.co/docs/lerobot"}, {"t": "Repo", "l": "LeRobot", "u": "https://github.com/huggingface/lerobot"}, {"t": "Paper", "l": "ACT / ALOHA", "u": "https://tonyzhaozh.github.io/aloha/"}, {"t": "Paper", "l": "Diffusion Policy", "u": "https://diffusion-policy.cs.columbia.edu/"}, {"t": "Video", "l": "LeRobot tutorials", "u": "https://www.youtube.com/results?search_query=LeRobot+Hugging+Face+tutorial"}], title: "Imitation learning with LeRobot", math: "",
         items: ["Behavior cloning, covariate shift, ACT paper",
                 "Diffusion Policy paper, action chunking",
                 "LeRobot datasets, recording sim demos",
                 "Training ACT and Diffusion Policy",
                 "Eval harness: success rate vs number of demos"],
         deliverable: "Results table and plots, policy wrapped in a ROS 2 node" },
-      { n: 14, title: "VLAs as software components", math: "",
+      { n: 14, res: [{"t": "Paper", "l": "OpenVLA", "u": "https://openvla.github.io/"}, {"t": "Repo", "l": "OpenVLA code", "u": "https://github.com/openvla/openvla"}, {"t": "Paper", "l": "Octo", "u": "https://octo-models.github.io/"}, {"t": "Paper", "l": "RT-2", "u": "https://robotics-transformer2.github.io/"}, {"t": "Paper", "l": "pi-0 (Physical Intelligence)", "u": "https://www.physicalintelligence.company/blog/pi0"}, {"t": "Docs", "l": "LIBERO benchmark", "u": "https://libero-project.github.io/"}], title: "VLAs as software components", math: "",
         items: ["RT-2, OpenVLA, Octo, pi-0: inputs, outputs, control rates",
                 "OpenVLA inference on a cloud GPU (LIBERO or SimplerEnv)",
                 "Model serving (FastAPI or gRPC), batching, latency",
                 "ROS 2 action server: instruction in, actions streamed out"],
         deliverable: "vla-phrasing-brittleness extended with measured results under paraphrased instructions" },
-      { n: 15, title: "Edge deployment", math: "",
+      { n: 15, res: [{"t": "Docs", "l": "TensorRT docs", "u": "https://docs.nvidia.com/deeplearning/tensorrt/"}, {"t": "Docs", "l": "ONNX Runtime quantization", "u": "https://onnxruntime.ai/docs/performance/model-optimizations/quantization.html"}, {"t": "Docs", "l": "Jetson AI Lab", "u": "https://www.jetson-ai-lab.com/"}], title: "Edge deployment", math: "",
         items: ["Latency budgets: policy loop vs control loop",
                 "ONNX Runtime, TensorRT, FP16 and INT8",
                 "Jetson-class constraints, multi-arch Docker",
                 "Benchmark week-12 and week-13 policies before and after"],
         deliverable: "Write-up with latency and accuracy tables" },
-      { n: 16, title: "Capstone", math: "",
+      { n: 16, res: [{"t": "Docs", "l": "Nav2 + MoveIt docs (above)", "u": "https://docs.nav2.org/jazzy/"}, {"t": "Video", "l": "Articulated Robotics (full robot builds)", "u": "https://www.youtube.com/@ArticulatedRobotics"}], title: "Capstone", math: "",
         items: ["Integrate the pieces from weeks 5 to 13",
                 "Failure cases, retries, logging",
                 "2-minute demo video",
@@ -285,6 +298,17 @@
           w.items.forEach(function (t, i) { body.appendChild(checkbox("w" + n + "-" + i, t)); });
           body.appendChild(checkbox("w" + n + "-d", "Deliverable: " + w.deliverable, "deliverable"));
           if (w.math) body.appendChild(el("p", { "class": "muted small math" }, "Math thread: " + w.math));
+          if (w.res && w.res.length) {
+            body.appendChild(el("p", { "class": "res-title" }, "Resources"));
+            var ul = el("ul", { "class": "res" });
+            w.res.forEach(function (r) {
+              var li = el("li");
+              li.appendChild(el("span", { "class": "res-tag tag-" + r.t.toLowerCase() }, r.t));
+              li.appendChild(el("a", { href: r.u, target: "_blank", rel: "noopener" }, r.l));
+              ul.appendChild(li);
+            });
+            body.appendChild(ul);
+          }
 
           var notes = el("textarea", { rows: "2", placeholder: "Notes, blockers, links for this week", "aria-label": "Notes for week " + n });
           notes.value = state.notes[n] || "";

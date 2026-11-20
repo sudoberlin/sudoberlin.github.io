@@ -259,3 +259,11 @@ footer p { margin: 0; }
 @media (max-width: 600px) {
   .phase-progress li { grid-template-columns: 1fr 70px 40px; }
 }
+
+.res-title { font-size: 0.85rem; font-weight: 600; color: var(--muted); margin: 12px 0 4px; text-transform: uppercase; letter-spacing: 0.04em; }
+.res { list-style: none; padding: 0; margin: 0 0 12px; font-size: 0.92rem; }
+.res li { display: grid; grid-template-columns: 58px 1fr; gap: 8px; align-items: baseline; padding: 3px 0; }
+.res-tag { font-size: 0.72rem; text-align: center; border: 1px solid var(--rule); border-radius: 4px; padding: 0 4px; color: var(--muted); }
+.tag-video { border-color: color-mix(in srgb, #c0392b 45%, var(--rule)); }
+.tag-docs { border-color: color-mix(in srgb, var(--accent) 45%, var(--rule)); }
+.tag-paper, .tag-book, .tag-course { border-color: color-mix(in srgb, #8e6c1f 45%, var(--rule)); }
