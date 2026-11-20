@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learning &middot; Shubham Singh</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="author" content="Shubham Singh">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../style.css?v=6">
+</head>
+<body>
+  <nav class="topbar" aria-label="Sections">
+    <div class="topbar-inner">
+      <a class="brand" href="../">Shubham Singh</a>
+      <div class="sections">
+        <a href="#plan">Plan</a>
+        <a href="#weeks">Weeks</a>
+        <a href="#checkpoints">Checkpoints</a>
+        <a href="../tools/">Tools</a>
+      </div>
+    </div>
+  </nav>
+  <main>
+
+    <header>
+      <h1>Learning</h1>
+      <p class="tagline">Robotics software, basic to intermediate. 16 weeks, 6 hours a day, Nov 23 2026 to Mar 14 2027.</p>
+    </header>
+
+    <section class="progress-panel" aria-label="Progress">
+      <div class="progress-head">
+        <span id="overall-label">0 of 0 done</span>
+        <span id="current-week" class="muted"></span>
+      </div>
+      <div class="bar" role="progressbar" aria-labelledby="overall-label"><span id="overall-bar"></span></div>
+      <ul id="phase-progress" class="phase-progress"></ul>
+      <p class="progress-tools">
+        <button type="button" id="jump">Go to this week</button>
+        <button type="button" id="export">Export progress</button>
+        <label class="import-label">Import<input type="file" id="import" accept="application/json" hidden></label>
+        <button type="button" id="reset" class="danger">Reset</button>
+      </p>
+      <p class="note">Ticks and notes save in this browser. Export a file to move them to another computer.</p>
+    </section>
+
+    <section id="plan">
+      <h2>How the plan works</h2>
+      <p>Most of the time goes into building with C++ and Python in ROS 2, MoveIt, Nav2, perception pipelines, simulators and robot learning frameworks. Everything runs in simulation, with no electronics. A 30 minute math thread (transforms, kinematics, Jacobians, control) runs alongside weeks 1 to 8.</p>
+      <ul class="timeline">
+        <li><span class="when">1.5 h</span><div><strong>Concept.</strong> Official docs, tutorial or lecture for the day's topic.</div></li>
+        <li><span class="when">3 h</span><div><strong>Build.</strong> Write the node, plugin or pipeline myself, in C++ where the ecosystem uses C++.</div></li>
+        <li><span class="when">0.5 h</span><div><strong>Read real code.</strong> Source from MoveIt 2, Nav2, ros2_control or LeRobot.</div></li>
+        <li><span class="when">1 h</span><div><strong>Math thread and log.</strong> Modern Robotics in weeks 1 to 8, then a short log entry and a push to GitHub.</div></li>
+      </ul>
+      <p class="muted small">Sunday is for the weekly deliverable, its README and a short demo GIF.</p>
+    </section>
+
+    <section id="weeks">
+      <h2>Weeks</h2>
+      <div id="week-list"></div>
+    </section>
+
+    <section id="checkpoints">
+      <h2>Checkpoints</h2>
+      <p>A checkpoint passes when I can do it from an empty workspace with no tutorials open.</p>
+      <div id="checkpoint-list"></div>
+    </section>
+
+    <footer>
+      <p><a href="../">Back to home</a></p>
+      <p>&copy; 2026 Shubham Singh</p>
+    </footer>
+
+  </main>
+
+  <script>
+  (function () {
+    var START = new Date(2026, 10, 23); // Mon Nov 23 2026
+
+    var PHASES = [
+      { name: "C++ and ROS 2 foundations", weeks: [1, 2] },
+      { name: "Manipulation software", weeks: [3, 4, 5] },
+      { name: "Perception and navigation", weeks: [6, 7, 8] },
+      { name: "Systems engineering", weeks: [9, 10] },
+      { name: "Robot learning software", weeks: [11, 12, 13, 14] },
+      { name: "Deployment and capstone", weeks: [15, 16] }
+    ];
+
+    var WEEKS = [
+      { n: 1, title: "Modern C++ for robotics", math: "MR ch 3, rigid-body motion",
+        items: ["C++17 refresh: RAII, smart pointers, move semantics, optional and variant",
+                "Templates and lambdas, the parts ROS 2 code uses",
+                "CMake targets, find_package, install rules, gtest",
+                "Eigen: Isometry3d, Quaterniond, aliasing and alignment pitfalls",
+                "Threads, mutexes, atomics, no allocation in real-time loops"],
+        deliverable: "SE(3) library in C++ (compose, invert, exp/log, interpolation), tested against Python modern_robotics" },
+      { n: 2, title: "ROS 2 core", math: "MR ch 4, forward kinematics",
+        items: ["Nodes, topics, executors, callback groups (rclcpp and rclpy)",
+                "Services and actions, an action server in C++",
+                "Parameters, Python launch files, namespaces, remapping",
+                "QoS profiles, best-effort for sensor data",
+                "colcon, package layout, custom interfaces"],
+        deliverable: "3-node package (sensor sim, filter, monitor with an action) with GitHub Actions CI" },
+      { n: 3, title: "Robot description and kinematics in code", math: "MR ch 5-6, Jacobians and IK",
+        items: ["URDF and xacro: links, joints, inertia, collision vs visual",
+                "robot_state_publisher, tf2 listeners and broadcasters in C++",
+                "KDL and Pinocchio: FK and Jacobians from a URDF",
+                "Numerical IK, damped least squares, KDL vs TRAC-IK",
+                "Read robot_state_publisher source"],
+        deliverable: "6-DOF arm URDF and my own IK node, checked against Pinocchio" },
+      { n: 4, title: "ros2_control and Gazebo", math: "MR ch 11.1-11.4, joint control",
+        items: ["ros2_control architecture, hardware interfaces, controller manager",
+                "Gazebo Harmonic + gz_ros2_control, spawn the arm",
+                "joint_trajectory_controller, sending trajectories from code",
+                "PID in a control loop: gains, rates, jitter",
+                "Controller plugin in C++ with pluginlib"],
+        deliverable: "Custom PD + gravity compensation controller plugin in Gazebo, with step-response plots" },
+      { n: 5, title: "MoveIt 2", math: "MR ch 9-10 skim, trajectories and planning",
+        items: ["MoveIt architecture, SRDF, Setup Assistant",
+                "Planning scene, collision objects, MoveGroupInterface in C++",
+                "OMPL planners (RRT-Connect, PRM) and their settings",
+                "Cartesian paths, time parameterization, MoveIt Servo",
+                "MoveIt Task Constructor"],
+        deliverable: "Pick-and-place of 3 blocks in Gazebo with MTC, robust to block positions" },
+      { n: 6, title: "Perception pipelines", math: "Camera model and projection",
+        items: ["image_transport, cv_bridge, camera_info, calibration",
+                "Depth to point cloud, PCL/Open3D filtering, plane segmentation",
+                "AprilTag detection, hand-eye calibration",
+                "YOLO or segmentation in a C++ node with ONNX Runtime",
+                "message_filters sync, latency measurement"],
+        deliverable: "Node that detects objects, publishes 3D poses on tf and feeds the week-5 pick-and-place" },
+      { n: 7, title: "Localization and SLAM", math: "Bayes filter and EKF equations",
+        items: ["Odometry, IMU, drift",
+                "Kalman filter and EKF in code, then robot_localization",
+                "Particle filters and AMCL",
+                "slam_toolbox mapping, loop closure, saving maps",
+                "Read slam_toolbox or robot_localization source"],
+        deliverable: "TurtleBot in Gazebo: fused odometry vs ground truth plot, plus a saved map" },
+      { n: 8, title: "Nav2", math: "MR ch 13 skim, wheeled robots",
+        items: ["Nav2 architecture, lifecycle nodes, BT navigator",
+                "Costmaps and layers, inflation",
+                "Planners (NavFn, Smac) and controllers (DWB, RPP, MPPI)",
+                "Nav2 controller plugin in C++",
+                "Waypoint following, recovery behaviors"],
+        deliverable: "My own pure-pursuit controller plugin, compared to RPP on the same course" },
+      { n: 9, title: "Architecture", math: "",
+        items: ["BehaviorTree.CPP and Groot",
+                "State machines vs behavior trees",
+                "Lifecycle nodes, startup and shutdown order",
+                "Composition, zero-copy, DDS choice and tuning",
+                "Error handling, timeouts, watchdogs"],
+        deliverable: "Behavior tree that navigates to a table, detects an object and picks it" },
+      { n: 10, title: "Testing, tooling and performance", math: "",
+        items: ["gtest, pytest, launch_testing",
+                "rosbag2 replay regression tests",
+                "Foxglove, RViz, structured logging",
+                "ros2_tracing, perf, callback latency, real-time Linux basics",
+                "Multi-stage Docker images, devcontainers"],
+        deliverable: "Test suite + Docker image for the week-9 system, CI green, latency report" },
+      { n: 11, title: "Simulation for learning", math: "",
+        items: ["MuJoCo Python API, MJCF, Menagerie",
+                "Gymnasium env API, a custom env",
+                "Isaac Lab overview, GPU-parallel sim (cloud GPU)",
+                "Domain randomization, observation and action design",
+                "Vectorized envs, throughput benchmarks"],
+        deliverable: "My own Gymnasium env for a Franka push or reach task, with tests" },
+      { n: 12, title: "RL from training to deployment", math: "",
+        items: ["PPO and SAC in Stable-Baselines3",
+                "Reward design, W&B or TensorBoard logging",
+                "Training runs and sweeps on the week-11 env",
+                "Export to ONNX or TorchScript",
+                "ROS 2 node running the policy at a fixed rate"],
+        deliverable: "Trained policy driving the arm in Gazebo through ros2_control" },
+      { n: 13, title: "Imitation learning with LeRobot", math: "",
+        items: ["Behavior cloning, covariate shift, ACT paper",
+                "Diffusion Policy paper, action chunking",
+                "LeRobot datasets, recording sim demos",
+                "Training ACT and Diffusion Policy",
+                "Eval harness: success rate vs number of demos"],
+        deliverable: "Results table and plots, policy wrapped in a ROS 2 node" },
+      { n: 14, title: "VLAs as software components", math: "",
+        items: ["RT-2, OpenVLA, Octo, pi-0: inputs, outputs, control rates",
+                "OpenVLA inference on a cloud GPU (LIBERO or SimplerEnv)",
+                "Model serving (FastAPI or gRPC), batching, latency",
+                "ROS 2 action server: instruction in, actions streamed out"],
+        deliverable: "vla-phrasing-brittleness extended with measured results under paraphrased instructions" },
+      { n: 15, title: "Edge deployment", math: "",
+        items: ["Latency budgets: policy loop vs control loop",
+                "ONNX Runtime, TensorRT, FP16 and INT8",
+                "Jetson-class constraints, multi-arch Docker",
+                "Benchmark week-12 and week-13 policies before and after"],
+        deliverable: "Write-up with latency and accuracy tables" },
+      { n: 16, title: "Capstone", math: "",
+        items: ["Integrate the pieces from weeks 5 to 13",
+                "Failure cases, retries, logging",
+                "2-minute demo video",
+                "README with architecture diagram and results"],
+        deliverable: "Mobile manipulator stack in Gazebo, end to end, in Docker with CI, added to this site" }
+    ];
+
+    var CHECKPOINTS = [
+      { after: 2, text: "Write a C++ ROS 2 action server and client from scratch in 45 minutes. Explain executors and callback groups." },
+      { after: 5, text: "Bring up an arm in Gazebo with ros2_control and plan a MoveIt motion in under 2 hours. Explain the Jacobian and why IK fails near singularities." },
+      { after: 8, text: "Debug a broken tf tree from a rosbag. Explain how Nav2's planner, controller and costmaps interact." },
+      { after: 10, text: "Show a failing integration test, fix it, get CI green. Explain my QoS and DDS choices." },
+      { after: 14, text: "Explain the path from a training run to a policy in a ROS 2 node: export format, control rate, latency." },
+      { after: 16, text: "Walk someone through the capstone architecture and explain any failure in the demo video." }
+    ];
+
+    var KEY = "learning-robotics-v1";
+    var state = { done: {}, notes: {} };
+    try {
+      var saved = JSON.parse(localStorage.getItem(KEY) || "null");
+      if (saved && saved.done) state = { done: saved.done, notes: saved.notes || {} };
+    } catch (e) {}
+
+    function save() {
+      try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+    }
+
+    function el(tag, attrs, text) {
+      var e = document.createElement(tag);
+      if (attrs) for (var k in attrs) e.setAttribute(k, attrs[k]);
+      if (text != null) e.textContent = text;
+      return e;
+    }
+
+    function fmt(d) {
+      return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+    }
+
+    function weekStart(n) {
+      var d = new Date(START);
+      d.setDate(d.getDate() + (n - 1) * 7);
+      return d;
+    }
+
+    function currentWeek() {
+      var today = new Date();
+      today.setHours(0, 0, 0, 0);
+      var diff = Math.floor((today - START) / 86400000);
+      if (diff < 0) return 0;
+      var w = Math.floor(diff / 7) + 1;
+      return w > 16 ? 17 : w;
+    }
+
+    function idsForWeek(w) {
+      var ids = w.items.map(function (_, i) { return "w" + w.n + "-" + i; });
+      ids.push("w" + w.n + "-d");
+      return ids;
+    }
+
+    function checkbox(id, label, extraClass) {
+      var row = el("label", { "class": "check" + (extraClass ? " " + extraClass : "") });
+      var box = el("input", { type: "checkbox", "data-id": id });
+      box.checked = !!state.done[id];
+      box.addEventListener("change", function () {
+        if (box.checked) state.done[id] = true; else delete state.done[id];
+        save();
+        refresh();
+      });
+      row.appendChild(box);
+      row.appendChild(el("span", null, label));
+      return row;
+    }
+
+    function renderWeeks() {
+      var list = document.getElementById("week-list");
+      var cur = currentWeek();
+      PHASES.forEach(function (p, pi) {
+        list.appendChild(el("h3", { "class": "phase-title" }, "Phase " + (pi + 1) + ": " + p.name));
+        p.weeks.forEach(function (n) {
+          var w = WEEKS[n - 1];
+          var start = weekStart(n);
+          var end = new Date(start); end.setDate(end.getDate() + 6);
+          var det = el("details", { "class": "week", id: "week-" + n });
+          if (n === cur) { det.open = true; det.classList.add("current"); }
+          var sum = el("summary");
+          sum.appendChild(el("span", { "class": "week-name" }, "Week " + n + ". " + w.title));
+          sum.appendChild(el("span", { "class": "week-meta", "data-week": n }, fmt(start) + " to " + fmt(end)));
+          det.appendChild(sum);
+
+          var body = el("div", { "class": "week-body" });
+          w.items.forEach(function (t, i) { body.appendChild(checkbox("w" + n + "-" + i, t)); });
+          body.appendChild(checkbox("w" + n + "-d", "Deliverable: " + w.deliverable, "deliverable"));
+          if (w.math) body.appendChild(el("p", { "class": "muted small math" }, "Math thread: " + w.math));
+
+          var notes = el("textarea", { rows: "2", placeholder: "Notes, blockers, links for this week", "aria-label": "Notes for week " + n });
+          notes.value = state.notes[n] || "";
+          notes.addEventListener("input", function () {
+            if (notes.value) state.notes[n] = notes.value; else delete state.notes[n];
+            save();
+          });
+          body.appendChild(notes);
+          det.appendChild(body);
+          list.appendChild(det);
+        });
+      });
+    }
+
+    function renderCheckpoints() {
+      var list = document.getElementById("checkpoint-list");
+      CHECKPOINTS.forEach(function (c) {
+        list.appendChild(checkbox("cp-" + c.after, "After week " + c.after + ". " + c.text, "checkpoint"));
+      });
+    }
+
+    function refresh() {
+      var all = [];
+      WEEKS.forEach(function (w) { all = all.concat(idsForWeek(w)); });
+      CHECKPOINTS.forEach(function (c) { all.push("cp-" + c.after); });
+      var done = all.filter(function (id) { return state.done[id]; }).length;
+      document.getElementById("overall-label").textContent = done + " of " + all.length + " done (" + Math.round(100 * done / all.length) + "%)";
+      document.getElementById("overall-bar").style.width = (100 * done / all.length) + "%";
+
+      var cur = currentWeek();
+      var cw = document.getElementById("current-week");
+      cw.textContent = cur === 0 ? "Starts Nov 23" : cur > 16 ? "Plan period finished" : "This is week " + cur;
+
+      var pp = document.getElementById("phase-progress");
+      pp.innerHTML = "";
+      PHASES.forEach(function (p, pi) {
+        var ids = [];
+        p.weeks.forEach(function (n) { ids = ids.concat(idsForWeek(WEEKS[n - 1])); });
+        var d = ids.filter(function (id) { return state.done[id]; }).length;
+        var li = el("li");
+        li.appendChild(el("span", null, (pi + 1) + ". " + p.name));
+        var bar = el("span", { "class": "bar small-bar" });
+        var fill = el("span"); fill.style.width = (100 * d / ids.length) + "%";
+        bar.appendChild(fill);
+        li.appendChild(bar);
+        li.appendChild(el("span", { "class": "muted count" }, d + "/" + ids.length));
+        pp.appendChild(li);
+      });
+
+      WEEKS.forEach(function (w) {
+        var ids = idsForWeek(w);
+        var d = ids.filter(function (id) { return state.done[id]; }).length;
+        var meta = document.querySelector('.week-meta[data-week="' + w.n + '"]');
+        var start = weekStart(w.n); var end = new Date(start); end.setDate(end.getDate() + 6);
+        meta.textContent = fmt(start) + " to " + fmt(end) + " · " + d + "/" + ids.length;
+        document.getElementById("week-" + w.n).classList.toggle("complete", d === ids.length);
+      });
+    }
+
+    function syncBoxes() {
+      document.querySelectorAll('input[type="checkbox"][data-id]').forEach(function (b) {
+        b.checked = !!state.done[b.getAttribute("data-id")];
+      });
+      document.querySelectorAll(".week textarea").forEach(function (t, i) {
+        t.value = state.notes[i + 1] || "";
+      });
+    }
+
+    document.getElementById("jump").addEventListener("click", function () {
+      var cur = Math.min(Math.max(currentWeek(), 1), 16);
+      var d = document.getElementById("week-" + cur);
+      d.open = true;
+      d.scrollIntoView({ behavior: "smooth" });
+    });
+
+    document.getElementById("export").addEventListener("click", function () {
+      var blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+      var a = el("a", { href: URL.createObjectURL(blob), download: "learning-progress.json" });
+      document.body.appendChild(a); a.click(); a.remove();
+    });
+
+    document.getElementById("import").addEventListener("change", function (e) {
+      var f = e.target.files[0];
+      if (!f) return;
+      f.text().then(function (txt) {
+        try {
+          var s = JSON.parse(txt);
+          if (!s || typeof s.done !== "object") throw new Error("bad file");
+          state = { done: s.done, notes: s.notes || {} };
+          save(); syncBoxes(); refresh();
+        } catch (err) {
+          document.querySelector(".note").textContent = "That file isn't a progress export.";
+        }
+        e.target.value = "";
+      });
+    });
+
+    var resetArmed = false;
+    var resetBtn = document.getElementById("reset");
+    resetBtn.addEventListener("click", function () {
+      if (!resetArmed) {
+        resetArmed = true;
+        resetBtn.textContent = "Click again to clear everything";
+        setTimeout(function () { resetArmed = false; resetBtn.textContent = "Reset"; }, 4000);
+        return;
+      }
+      state = { done: {}, notes: {} };
+      save(); syncBoxes(); refresh();
+      resetArmed = false; resetBtn.textContent = "Reset";
+    });
+
+    renderWeeks();
+    renderCheckpoints();
+    refresh();
+  })();
+  </script>
+</body>
+</html>
